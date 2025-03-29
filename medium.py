@@ -83,7 +83,7 @@ class Solution:
         
         return max if max >= len(st) else len(st)
 
-#4. Longest Palindromic Substring
+#5. Longest Palindromic Substring
 class Solution:
     def __init__(self):
         self.longest = ""
