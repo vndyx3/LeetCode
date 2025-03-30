@@ -146,3 +146,29 @@ class Solution:
             if front > back:
                 return s[i:end]
         return ""
+
+#6. Zigzag Conversion
+class Solution:
+    def convert(self, s: str, numRows: int) -> str:
+        if numRows == 1:
+            return s
+            
+        lst = []
+        rowNum = 0
+        up = False
+
+
+        for i in s:
+            if len(lst) < numRows:
+                lst.append("")
+            
+            lst[rowNum] += i
+        
+            rowNum += 1 if not up else -1
+
+            if rowNum == numRows or rowNum == -1:
+                up = not up
+                rowNum += 2 if not up else -2
+
+        return "".join(lst)
+
