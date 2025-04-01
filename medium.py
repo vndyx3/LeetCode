@@ -172,3 +172,16 @@ class Solution:
 
         return "".join(lst)
 
+
+#7. Reverse Integer
+class Solution:
+    def reverse(self, x: int) -> int:
+        temp = str(x)[::-1]
+        temp = temp if temp[-1] != '-' else ('-' + temp[:-1])
+        temp = int(temp)
+
+        if temp >= 2147483648 or temp < -2147483648:
+            return 0
+        
+        return temp
+        
