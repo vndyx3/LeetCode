@@ -184,4 +184,54 @@ class Solution:
             return 0
         
         return temp
+
+#8 String to Integer (atoi)       
+class Solution:
+    def myAtoi(self, s: str) -> int:
+        trailing = True
+        leadingZero = True
+        num = ""
+        negative = False
+        index = 0
+
+        while index < len(s) and (trailing or leadingZero):
+            if index < len(s) and trailing and s[index] == " ":
+                index += 1
+                continue
+            elif index < len(s) and s[index] == "0":
+                trailing = False
+                index += 1
+                num += "0"
+                continue
+            else:
+                if index >= len(s):
+                    return 0
+                elif s[index].isdigit():
+                    trailing = False
+                    leadingZero = False
+                    num += s[index]
+                elif trailing and s[index] == "-":
+                    trailing = False
+                    negative = True
+                elif trailing and s[index] == "+":
+                    trailing = False
+                else:
+                    return 0
+
+                index += 1
         
+        while index < len(s) and s[index].isdigit():
+            num += s[index]
+            index += 1
+
+        if num == "":
+            return 0
+
+        num = int(num) if not negative else int(num) * -1
+
+        if num < -2147483648:
+            return -2147483648
+        elif num > 2147483647:
+            return 2147483647
+        else:
+            return num
